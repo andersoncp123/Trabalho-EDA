@@ -43,7 +43,7 @@ tPilhaSimples *desimpilhar(tPilhaSimples *topoPilha){
     tPilhaSimples *novoTopoPilha;
     novoTopoPilha = malloc(sizeof(tPilhaSimples));
     if (novoTopoPilha == NULL){// Verificação se a pilha está vázia 
-        printf("Pilha Vázia, não é possível desimpilhar !\n");
+        printf("Pilha Vazia, não é possível desimpilhar !\n");
         return topoPilha; // Pilha Vázia 
     }else{
         novoTopoPilha = topoPilha -> proximo;
@@ -52,10 +52,87 @@ tPilhaSimples *desimpilhar(tPilhaSimples *topoPilha){
     }
 }
 //mostrar os elementos em forma de pilha
-void mostrarPilha(){
-
+void mostrarPilha(tPilhaSimples *pilha){
+    tPilhaSimples *auxiliar;
+    auxiliar = pilha;
+    if (auxiliar == NULL){
+        printf("Pilha Vázia !\n");
+    }else{
+        while (auxiliar != NULL){
+            printf("%d\n",auxiliar ->dado);
+            auxiliar = auxiliar ->proximo;
+        }
+    }
 }
 //opção para finalizar o programa, limpar a pilha e mencionar a quantidade de nós liberados
-void limparPilha(){
-
+void limparPilha(tPilhaSimples *pilha){
+    tPilhaSimples *auxiliar;
+    auxiliar = pilha;
+    if (auxiliar == NULL){
+        printf("Pilha Vázia !\n");
+    }else{
+        while (auxiliar != NULL){
+            auxiliar = auxiliar ->proximo;
+            free(pilha);
+            pilha = auxiliar;
+        }
+    }
 }
+
+int menu(){
+        int opcao;
+        printf("1 - Empilhar\n");
+        printf("2 - Desempilhar\n");
+        printf("3 - Mostrar Pilha\n");
+        printf("4 - Limpar Pilha\n");
+        printf("5 - Sair\n");
+        printf("Digite a opcao desejada: ");
+        scanf("%i",&opcao);
+        return opcao;
+}
+
+int main(){
+    tPilhaSimples *pilha = NULL;
+    int opcao;
+
+    do {
+        opcao = menu();
+
+        switch (opcao) {
+            case 1: {
+                int dadoNovo;
+                printf("Digite o numero a ser empilhado: ");
+                scanf("%d", &dadoNovo);
+                pilha = empilhar(dadoNovo, pilha);
+                break;
+            }
+            case 2: {
+                pilha = desimpilhar(pilha);
+                break;
+            }
+            case 3: {
+                printf("Conteudo da pilha:\n");
+                mostrarPilha(pilha);
+                break;
+            }
+            case 4: {
+                limparPilha(pilha);
+                pilha = NULL;
+                printf("Pilha limpa.\n");
+                break;
+            }
+            case 5: {
+                printf("Saindo do programa...\n");
+                limparPilha(pilha);
+                break;
+            }
+            default: {
+                printf("Opcao invalida!\n");
+                break;
+            }
+        }
+    } while (opcao != 5);
+
+    return 0;
+}
+

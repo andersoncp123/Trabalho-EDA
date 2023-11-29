@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 //criar struct
 typedef struct no{
     int dado;

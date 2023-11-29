@@ -7,9 +7,9 @@ typedef struct no{
 //testar se a pilha está vazia
 int testePilhaVazia(tPilhaSimples *pilha) {
     if (pilha == NULL || pilha->proximo == NULL) {// Verifica se a pilha está vazia ou o próximo elemento é NULL;
-        return 0;
-    } else {
         return 1;
+    } else {
+        return 0;
     }
 }
 
@@ -36,10 +36,11 @@ tPilhaSimples *empilhar(int dadoNovo,tPilhaSimples *topoPilha){
     }
 }
 //desempilhar números (caso não esteja vazia)
-tPilhaSimples *empilhar(tPilhaSimples *topoPilha){
+tPilhaSimples *desimpilhar(tPilhaSimples *topoPilha){
     tPilhaSimples *novoTopoPilha;
     novoTopoPilha = malloc(sizeof(tPilhaSimples));
-    if (novoTopoPilha == NULL){
+    if (novoTopoPilha == NULL){// Verificação se a pilha está vázia 
+        printf("Pilha Vázia, não é possível desimpilhar !\n");
         return topoPilha; // Pilha Vázia 
     }else{
         novoTopoPilha = topoPilha -> proximo;
@@ -48,5 +49,10 @@ tPilhaSimples *empilhar(tPilhaSimples *topoPilha){
     }
 }
 //mostrar os elementos em forma de pilha
+void mostrarPilha(){
 
+}
 //opção para finalizar o programa, limpar a pilha e mencionar a quantidade de nós liberados
+void limparPilha(){
+
+}

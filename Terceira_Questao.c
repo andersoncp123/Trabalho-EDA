@@ -67,7 +67,7 @@ void imprimiFila(tFilaSimples *inicio){
 //opção para finalizar o programa, limpar a lista e mencionar a quantidade de nós liberados
 void limparFila(tFilaSimples *inicio){
     tFilaSimples *temp = inicio;
-    int count;
+    int count =0;
 
     if (temp == NULL){
         printf("\nFila Vazia !\n");

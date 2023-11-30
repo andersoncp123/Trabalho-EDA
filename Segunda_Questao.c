@@ -11,8 +11,8 @@ typedef struct no
 // testar se a pilha está vazia
 int testePilhaVazia(tPilhaSimples *pilha)
 {
-    if (pilha == NULL || pilha->proximo == NULL)
-    { // Verifica se a pilha está vazia ou o próximo elemento é NULL;
+    if (pilha == NULL)
+    { // Verifica se a pilha está vazia;
         return 1;
     }
     else
@@ -46,6 +46,8 @@ tPilhaSimples *empilhar(int dadoNovo, tPilhaSimples *topoPilha)
     {
         novoTopoPilha->dado = dadoNovo;
         novoTopoPilha->proximo = topoPilha;
+        printf("Elemento adicionado !\n");
+        printf("\n");
         return novoTopoPilha;
     }
 }
@@ -57,12 +59,15 @@ tPilhaSimples *desimpilhar(tPilhaSimples *topoPilha)
     if (novoTopoPilha == NULL)
     { // Verificação se a pilha está vázia
         printf("Pilha Vazia, não é possível desimpilhar !\n");
+        printf("\n");
         return topoPilha; // Pilha Vázia
     }
     else
     {
         novoTopoPilha = topoPilha->proximo;
-        free(topoPilha);
+        printf("Elemento %d foi removido com sucesso !\n",topoPilha ->dado);
+        printf("\n");
+        free(topoPilha); 
         return novoTopoPilha;
     }
 }
@@ -108,7 +113,8 @@ int menu()
     printf("2 - Desempilhar\n");
     printf("3 - Mostrar Pilha\n");
     printf("4 - Limpar Pilha\n");
-    printf("5 - Sair\n");
+    printf("5 - Verificar se a fila esta vazia\n");
+    printf("6 - Sair\n");
     printf("Digite a opcao desejada: ");
     scanf("%i", &opcao);
     return opcao;
@@ -141,7 +147,9 @@ int main()
         case 3:
         {
             printf("Conteudo da pilha:\n");
+            printf("\n");
             mostrarPilha(pilha);
+            printf("\n");
             break;
         }
         case 4:
@@ -154,6 +162,18 @@ int main()
         }
         case 5:
         {
+            if (testePilhaVazia(pilha)) {
+                printf("A pilha esta vazia.\n");
+                printf("\n");
+            } else {
+                printf("A pilha nao esta vazia.\n");
+                printf("\n");
+            }
+            break;
+        }
+
+        case 6:
+        {
             printf("Saindo do programa...\n");
             limparPilha(pilha);
             break;
@@ -161,10 +181,11 @@ int main()
         default:
         {
             printf("Opcao invalida!\n");
+            printf("\n");
             break;
         }
         }
-    } while (opcao != 5);
+    } while (opcao != 6);
 
     return 0;
 }

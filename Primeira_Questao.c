@@ -20,7 +20,7 @@ void criarListaUnitaria(tListaDupla **lista, int valor) {
         (*lista)->dado = valor;
         (*lista)->anterior = (*lista)->proximo = NULL;
     } else {
-        printf("A lista não está vazia. Não foi possível criar a lista unitária.\n");
+        printf("A lista nao esta vazia. Nao foi possivel criar a lista unitaria.\n");
     }
 }
 
@@ -57,7 +57,7 @@ void inserirElemento(tListaDupla **lista, int valor) {
 
 void removerElemento(tListaDupla **lista, int valor) {
     if (listaVazia(*lista)) {
-        printf("A lista está vazia. Não foi possível remover o elemento.\n");
+        printf("A lista esta vazia. Nao foi possivel remover o elemento.\n");
         return;
     }
 
@@ -70,7 +70,7 @@ void removerElemento(tListaDupla **lista, int valor) {
     }
 
     if (atual == NULL) {
-        printf("Elemento não encontrado. Não foi possível remover.\n");
+        printf("Elemento nao encontrado. Nao foi possivel remover.\n");
         return;
     }
 
@@ -100,13 +100,13 @@ int pesquisarElemento(tListaDupla *lista, int valor) {
         atual = atual->proximo;
     }
 
-    printf("Elemento %d não encontrado na lista.\n", valor);
+    printf("Elemento %d nao encontrado na lista.\n", valor);
     return 0;
 }
 
 void exibirLista(tListaDupla *lista, int ordem) {
     if (listaVazia(lista)) {
-        printf("A lista está vazia.\n");
+        printf("A lista esta vazia.\n");
         return;
     }
 
@@ -152,27 +152,27 @@ int main() {
     int opcao, valor;
 
     do {
-        printf("\n1. Verificar se a lista está vazia\n");
-        printf("2. Criar lista unitária\n");
+        printf("\n1. Verificar se a lista esta vazia\n");
+        printf("2. Criar lista unitaria\n");
         printf("3. Inserir elemento na lista\n");
         printf("4. Remover elemento da lista\n");
         printf("5. Pesquisar elemento na lista\n");
         printf("6. Exibir lista\n");
         printf("7. Exibir lista em ordem decrescente\n");
         printf("8. Finalizar o programa\n");
-        printf("Escolha uma opção: ");
+        printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
 
         switch (opcao) {
             case 1:
                 if (listaVazia(lista)) {
-                    printf("A lista está vazia.\n");
+                    printf("A lista esta vazia.\n");
                 } else {
-                    printf("A lista não está vazia.\n");
+                    printf("A lista nao esta vazia.\n");
                 }
                 break;
             case 2:
-                printf("Digite o valor para criar a lista unitária: ");
+                printf("Digite o valor para criar a lista unitaria: ");
                 scanf("%d", &valor);
                 criarListaUnitaria(&lista, valor);
                 break;
@@ -199,10 +199,10 @@ int main() {
                 break;
             case 8:
                 destruirLista(&lista);
-                printf("Programa finalizado. Lista destruída.\n");
+                printf("Programa finalizado. Lista destruida.\n");
                 break;
             default:
-                printf("Opção inválida. Tente novamente.\n");
+                printf("Opcao invalida. Tente novamente.\n");
         }
     } while (opcao != 8);
 

@@ -10,20 +10,23 @@ void inicializarLista(tListaDupla **lista) {
     *lista = NULL;
 }
 
+//Verificar se a lista está vazia
 int listaVazia(tListaDupla *lista) {
     return lista == NULL;
 }
 
+// Criação da Lista Unitária
 void criarListaUnitaria(tListaDupla **lista, int valor) {
     if (listaVazia(*lista)) {
         *lista = (tListaDupla *)malloc(sizeof(tListaDupla));
         (*lista)->dado = valor;
         (*lista)->anterior = (*lista)->proximo = NULL;
     } else {
-        printf("A lista nao esta vazia. Nao foi possivel criar a lista unitaria.\n");
+        printf("A lista nao esta vazia ! Nao foi possivel criar a lista unitaria !\n");
     }
 }
 
+//Inserir elemento na lista duplamente encadeada
 void inserirElemento(tListaDupla **lista, int valor) {
     tListaDupla *novo = (tListaDupla *)malloc(sizeof(tListaDupla));
     novo->dado = valor;
@@ -55,9 +58,10 @@ void inserirElemento(tListaDupla **lista, int valor) {
     }
 }
 
+//Remover elemento da lista duplamente encadeada
 void removerElemento(tListaDupla **lista, int valor) {
     if (listaVazia(*lista)) {
-        printf("A lista esta vazia. Nao foi possivel remover o elemento.\n");
+        printf("A lista esta vazia. Nao foi possivel remover o elemento !\n");
         return;
     }
 
@@ -70,7 +74,7 @@ void removerElemento(tListaDupla **lista, int valor) {
     }
 
     if (atual == NULL) {
-        printf("Elemento nao encontrado. Nao foi possivel remover.\n");
+        printf("Elemento nao encontrado. Nao foi possivel remover !\n");
         return;
     }
 
@@ -89,6 +93,7 @@ void removerElemento(tListaDupla **lista, int valor) {
     free(atual);
 }
 
+//Pesquisar elemento na lista dupla
 int pesquisarElemento(tListaDupla *lista, int valor) {
     tListaDupla *atual = lista;
 
@@ -104,19 +109,20 @@ int pesquisarElemento(tListaDupla *lista, int valor) {
     return 0;
 }
 
+//Exibir lista em ordem crescente e descrescente, verificando através do if dentro do método
 void exibirLista(tListaDupla *lista, int ordem) {
     if (listaVazia(lista)) {
-        printf("A lista esta vazia.\n");
+        printf("A lista esta vazia !\n");
         return;
     }
 
-    if (ordem == 1) {
+    if (ordem == 1) {// Crescente
         printf("Listagem em ordem crescente:\n");
         while (lista != NULL) {
             printf("%d ", lista->dado);
             lista = lista->proximo;
         }
-    } else {
+    } else {// Descrescente
         tListaDupla *ultimo = lista;
         while (ultimo->proximo != NULL) {
             ultimo = ultimo->proximo;
@@ -132,6 +138,7 @@ void exibirLista(tListaDupla *lista, int ordem) {
     printf("\n");
 }
 
+// Destruir lista, liberando a alocação de mémoria
 void destruirLista(tListaDupla **lista) {
     tListaDupla *atual = *lista;
     tListaDupla *prox = NULL;
@@ -154,21 +161,22 @@ int main() {
     do {
         printf("\n1. Verificar se a lista esta vazia\n");
         printf("2. Criar lista unitaria\n");
-        printf("3. Inserir elemento na lista\n");
-        printf("4. Remover elemento da lista\n");
-        printf("5. Pesquisar elemento na lista\n");
-        printf("6. Exibir lista\n");
-        printf("7. Exibir lista em ordem decrescente\n");
+        printf("3. INSERIR elemento \n");
+        printf("4. REMOVER elemento \n");
+        printf("5. Pesquisar elemento \n");
+        printf("6. Exibir lista crescente\n");
+        printf("7. Exibir lista decrescente\n");
         printf("8. Finalizar o programa\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
+        printf("\n");
 
         switch (opcao) {
             case 1:
                 if (listaVazia(lista)) {
-                    printf("A lista esta vazia.\n");
+                    printf("A lista esta vazia !\n");
                 } else {
-                    printf("A lista nao esta vazia.\n");
+                    printf("A lista nao esta vazia !\n");
                 }
                 break;
             case 2:
@@ -202,7 +210,7 @@ int main() {
                 printf("Programa finalizado. Lista destruida.\n");
                 break;
             default:
-                printf("Opcao invalida. Tente novamente.\n");
+                printf("Opcao invalida ! Tente novamente !\n");
         }
     } while (opcao != 8);
 
